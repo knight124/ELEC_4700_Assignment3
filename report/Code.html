@@ -1,0 +1,1124 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Elec 4700 Assignment 3</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-20"><meta name="DC.source" content="Code.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Elec 4700 Assignment 3</h1><!--introduction--><p>Steven Cramp 101030294</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introduction:</a></li><li><a href="#2">Part 1:</a></li><li><a href="#3">Appendix 1: E-feild calculation</a></li></ul></div><h2 id="1">Introduction:</h2><p>The purpose of this Assignment is to investigate the effects of an electric feild on the trajectories of the electrons in a semiconductor. The assignment will first look at the effects of a constant electric field on the trajectory, then the effect of a changing electric feild.</p><h2 id="2">Part 1:</h2><p>This segment looks at the trajectories of electorns in a constant electric feild. A constant electric feild causes the trajectories of the electrons to curve due to the force that it applies. The code sagment below was used to calculate the the trajectories of the ellectrons with in the semiconductor as well as the current, dencity and temperatuer of the electrons in the semiconductor. The fallowing equation is used to calculate current that flows through the semiconductor. Where V is the volocity of the electon, q is the charge, is the electron dencity, and A is the cross section of the semiconductor in the y direction. $$Jdrift = -V*N*q*A</p><pre class="codeinput">clc;clear;close <span class="string">all</span>
+<span class="keyword">global</span> C
+
+C.q_0 = 1.60217653e-19;             <span class="comment">% electron charge</span>
+C.hb = 1.054571596e-34;             <span class="comment">% Dirac constant</span>
+C.h = C.hb * 2 * pi;                <span class="comment">% Planck constant</span>
+C.m_0 = 9.10938215e-31;             <span class="comment">% electron mass</span>
+C.kb = 1.3806504e-23;               <span class="comment">% Boltzmann constant</span>
+C.eps_0 = 8.854187817e-12;          <span class="comment">% vacuum permittivity</span>
+C.mu_0 = 1.2566370614e-6;           <span class="comment">% vacuum permeability</span>
+C.c = 299792458;                    <span class="comment">% speed of light</span>
+C.g = 9.80665; <span class="comment">%metres (32.1740 ft) per s&Acirc;&sup2;</span>
+a3p1 =1;
+a3p2 = 0;
+
+partical_colission = 1;<span class="comment">% part 2</span>
+boxes =0;<span class="comment">%part 3</span>
+specular = 0 ;<span class="comment">% part 3 one is on zero is off</span>
+
+T= 300;<span class="comment">%k temperature</span>
+Eme= 0.26* C.m_0;<span class="comment">% kg effective mass of electron</span>
+Tmn = 0.2e-12<span class="comment">%s mean time between colissions</span>
+vth = sqrt(2*C.kb*T/Eme)<span class="comment">% m/s thermal volocity</span>
+MFP = vth*Tmn <span class="comment">%m</span>
+m= 500;<span class="comment">% length of sim</span>
+dt = 5e-15;<span class="comment">% time step</span>
+N = 10000; <span class="comment">%number of electons</span>
+dimx =200e-9;<span class="comment">%m</span>
+dimy =100e-9;<span class="comment">%m</span>
+c =zeros(1,N);
+
+Fx=0;
+Fy=0;
+
+<span class="comment">% create boxes</span>
+<span class="keyword">if</span> (boxes)
+    box1 = [dimx-125e-9,dimx-75e-9,dimx-75e-9,dimx-125e-9,dimx-125e-9;dimy,dimy, dimy-40e-9,dimy-40e-9,dimy];
+    box2 = [dimx-125e-9,dimx-75e-9,dimx-75e-9,dimx-125e-9,dimx-125e-9;40e-9,40e-9, 0,0,40e-9];
+<span class="keyword">else</span>
+    box1 =[0 0 0 0 0 ; 0 0 0 0 0];
+    box2 =[0 0 0 0 0 ; 0 0 0 0 0];
+<span class="keyword">end</span>
+<span class="comment">% initiates points and ensures that they donot spawn ouside the boundries</span>
+<span class="keyword">if</span> ~boxes
+    xpos = (randi((dimx*1e9)+1,1,N)-1)/1e9;<span class="comment">% m electron position x</span>
+    ypos = (randi((dimy*1e9)+1,1,N)-1)/1e9;<span class="comment">% m electron position y</span>
+    xpos(xpos ==dimx)=xpos(xpos ==dimx)-1e-9;
+    xpos(xpos ==0)=xpos(xpos ==0)+1e-9;
+    ypos(ypos ==dimy)=ypos(ypos ==dimy)-1e-9;
+    ypos(ypos ==0)=ypos(ypos ==0)+1e-9;
+<span class="keyword">elseif</span>(boxes)
+    <span class="keyword">for</span> l =1:N
+        xpos(1,l) =(randi((dimx*1e9)+1,1,1)-1)/1e9 ;
+        ypos(1,l) =(randi((dimy*1e9)+1,1,1)-1)/1e9;
+        <span class="keyword">while</span> (ypos(1,l)&lt;=0|ypos(1,l)&gt;=dimy|xpos(1,l)&gt;=box1(1,1)-1e-9&amp;xpos(1,l)&lt;=box1(1,2)+1e-9&amp;(ypos(1,l)&lt;=box2(2,1)+1e-9|ypos(1,l)&gt;=box1(2,3)-1e-9))
+            xpos(1,l) =(randi((dimx*1e9)+1,1,1)-1)/1e9 ;
+            ypos(1,l) =(randi((dimy*1e9)+1,1,1)-1)/1e9;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="comment">% while(sum ((xpos&gt;=box1(1,1)&amp;xpos&lt;= box1(1,1)&amp; ypos&gt;= box1(2,3))|(xpos&gt;=box2(1,1)&amp;xpos&lt;= box2(1,1)&amp; ypos&gt;= box2(2,3)))&gt;=1)</span>
+<span class="comment">%     xpos = (randi((dimx*1e9)+1,1,N)-1)/1e9;% m electron position x</span>
+<span class="comment">%     ypos = (randi((dimy*1e9)+1,1,N)-1)/1e9;% m electron position y</span>
+<span class="comment">% end</span>
+
+vx   = zeros(1,N);<span class="comment">%m/s velocity in x</span>
+vy   = zeros(1,N);<span class="comment">%m/s velocity in y</span>
+colision_count = zeros(1,N);
+dtraveled=zeros(1,N);
+colourL = [<span class="string">"R"</span>, <span class="string">"G"</span>, <span class="string">"B"</span>,<span class="string">"LB"</span>, <span class="string">"P"</span>, <span class="string">"y"</span>, <span class="string">"BLk"</span>, <span class="string">"DB"</span>, <span class="string">"O"</span>,<span class="string">"M"</span>,<span class="string">"GG"</span>];
+colour = [[1 0 0];[0 1 0];[0 0 1];[0 1 1];[1 0 1];[1 1 0];[0 0 0];[0 0.447 0.741];[0.85 0.325 0.098];[0.929 0.694 0.125];[0.466 0.674 0.188]];
+Temp = T;
+
+ dx2 =1e-9;
+    dy2=1e-9;
+    nx2 =round( dimx/dx2);
+    ny2 = round(dimy/dy2);
+    Ex=zeros(ny2,nx2);
+    Ey=zeros(ny2,nx2);
+<span class="comment">% initiated the partical velocities</span>
+<span class="keyword">if</span> ~partical_colission
+    angle = rand(1,N);
+    vx = vth* cos(angle*2*pi);
+    vy = vth* sin(angle*2*pi);
+<span class="keyword">else</span>
+    vx =randn(1,N)*sqrt(C.kb*T/Eme);
+    vy=randn(1,N)*sqrt(C.kb*T/Eme);
+<span class="keyword">end</span>
+v = sqrt(vx.^2+vy.^2);
+
+
+
+<span class="keyword">if</span> boxes
+    figure (2)
+    subplot(2,1,1);
+    plot (box1(1,:),box1(2,:),<span class="string">'-k'</span>)
+    hold <span class="string">on</span>
+    plot (box2(1,:),box2(2,:),<span class="string">'-k'</span>)
+<span class="keyword">end</span>
+<span class="keyword">if</span> partical_colission
+    figure
+    histogram(v)
+    p =1-exp(-dt/Tmn);
+<span class="keyword">else</span>
+    p=0;
+<span class="keyword">end</span>
+
+
+<span class="keyword">if</span> a3p1 ==1
+
+    econcentration =1e15;
+    J_driftx = -mean(vx)*econcentration*C.q_0*dimy*100;
+    Vapplied =0.1;
+    Ex = Vapplied/dimx
+    Ey =0
+    Fx = (-C.q_0)*Ex
+    Fy = (-C.q_0)*Ey
+    AccelerationX =(Fx./(C.m_0))*dt.^2
+    AccelerationY =(Fy./(C.m_0))*dt.^2
+<span class="keyword">end</span>
+<span class="keyword">if</span> a3p2 == 1
+     econcentration =1e15;
+   boundy = [-1 nan 0 nan];
+   J_driftx = -mean(vx)*econcentration*C.q_0*dimy*100;
+    [Ex, Ey]= calcEfeild (dimx,dimy,dx2,dy2,boundy, box1, box2);
+
+<span class="keyword">end</span>
+
+<span class="keyword">for</span> l=1:m
+    <span class="keyword">if</span> a3p2 ==1
+    lincordx = floor(xpos(1,:)/dx2)+1;
+    lincordy = floor(ypos(1,:)/dy2)+1;
+    lincordx(lincordx==round(dimx/dx2))=1;
+    lincordy(lincordy==round(dimy/dy2))=1;
+    <span class="keyword">for</span> k = 1:N
+    ExatPos= (Ex(lincordy(k),lincordx(k))+Ex(lincordy(k)+1,lincordx(k))+Ex(lincordy(k),lincordx(k)+1)+Ex(lincordy(k)+1,lincordx(k)+1))/4;
+    EyatPos= (Ey(lincordy(k),lincordx(k))+Ey(lincordy(k)+1,lincordx(k))+Ey(lincordy(k),lincordx(k)+1)+Ey(lincordy(k)+1,lincordx(k)+1))/4;
+    <span class="keyword">end</span>
+
+        Fx = (-C.q_0)*ExatPos(1,:);
+        Fy = (-C.q_0)*EyatPos(1,:);
+
+    <span class="keyword">end</span>
+
+    <span class="comment">%updates position</span>
+    vx = vx+(Fx./(C.m_0))*dt;
+    vy =vy+(Fy./(C.m_0))*dt;
+    v = sqrt(vx.^2+vy.^2);
+    J_driftx =[J_driftx, -C.q_0*econcentration *mean(vx)*dimy*100];
+    xpos=[xpos;xpos(l,:)+(vx)*dt];
+    ypos=[ypos;ypos(l,:)+(vy)*dt];
+    <span class="comment">% fineds the distance traveled by each partical</span>
+    dtraveled = dtraveled + sqrt ((xpos(l,:)-xpos(l+1,:)).^2+(ypos(l,:)-ypos(l+1,:)).^2);
+    slope =(vy./vx);
+    <span class="comment">% sets up colision detection by determining if the particals have the</span>
+    <span class="comment">% distance to the edges</span>
+
+    dtt = sqrt(((dimy -ypos(l+1,:)).^2)+((((dimy-ypos(l+1,:))./slope)).^2));
+    dtb = sqrt(((0 -ypos(l+1,:)).^2)+((((-ypos(l+1,:))./slope)).^2));
+    <span class="keyword">if</span>(boxes)
+        dttbf =((xpos(l+1,:)&gt;=box1(1,1)&amp;xpos(l+1,:)&lt;=box1(1,2))).* sqrt(((box1(2,3) -ypos(l+1,:)).^2)+((((box1(2,3)-ypos(l+1,:))./slope)).^2))+~((xpos(l+1,:)&gt;=box1(1,1)&amp;xpos(l+1,:)&lt;=box1(1,2))).*100;
+        dtbbf = ((xpos(l+1,:)&gt;=box1(1,1)&amp;xpos(l+1,:)&lt;=box1(1,2))).*sqrt(((box2(2,1) -ypos(l+1,:)).^2)+((((box2(2,1)-ypos(l+1,:))./slope)).^2))+~((xpos(l+1,:)&gt;=box1(1,1)&amp;xpos(l+1,:)&lt;=box1(1,2))).*100;
+        dts1 =( ypos(l+1,:)&lt;=box2(2,1)|ypos(l+1,:)&gt;=box1(2,3)).* sqrt((slope.*(box1(1,1)-xpos(l+1,:))).^2+(box1(1,1)-xpos(l+1,:)).^2) +~( ypos(l+1,:)&lt;=box2(2,1)|ypos(l+1,:)&gt;=box1(2,3)).*100;
+        dts2=( ypos(l+1,:)&lt;=box2(2,1)|ypos(l+1,:)&gt;=box1(2,3)).* sqrt((slope.*(box1(1,2)-xpos(l+1,:))).^2+(box1(1,2)-xpos(l+1,:)).^2) +~( ypos(l+1,:)&lt;=box2(2,1)|ypos(l+1,:)&gt;=box1(2,3)).*100;
+    <span class="keyword">else</span>
+        dttbf =ones(1,N).*100;
+        dtbbf = ones(1,N).*100;
+        dts1 =ones(1,N).*100;
+        dts2=ones(1,N).*100;
+
+    <span class="keyword">end</span>
+    <span class="comment">%counts the number of colissions that have occured and</span>
+    pc =c;
+    c=(((dts1&lt;1e-9|dts2&lt;1e-9)|((dtt&lt;1e-9|dtb&lt;1e-9|dttbf&lt;1e-9|dtbbf&lt;1e-9))));
+    colision_count = colision_count+(((dts1&lt;1e-9|dts2&lt;1e-9)|((dtt&lt;1e-9|dtb&lt;1e-9|dttbf&lt;1e-9|dtbbf&lt;1e-9))));
+    <span class="keyword">if</span> specular
+        <span class="comment">% basic colission part one</span>
+        vy= -((dtt&lt;1e-9|dtb&lt;1e-9|dttbf&lt;1e-9|dtbbf&lt;1e-9).*2-1).*vy;
+        vx= -((dts1&lt;1e-9|dts2&lt;1e-9).*2-1).*vx;
+    <span class="keyword">else</span>
+        <span class="comment">% re thermalized velocities for part 3</span>
+        <span class="comment">%if rethermalized volocity is in the same direection as previouse</span>
+        <span class="comment">%than flip signs</span>
+        signx=sign(vx);
+        signy=sign(vy);
+
+
+
+        vx= ((((dts1&lt;1e-9|dts2&lt;1e-9)|((dtt&lt;1e-9|dtb&lt;1e-9|dttbf&lt;1e-9|dtbbf&lt;1e-9))))&amp;~pc).*(randn(1,N)*sqrt(C.kb*T/Eme)) +(~((((dts1&lt;1e-9|dts2&lt;1e-9))|((dtt&lt;1e-9|dtb&lt;1e-9|dttbf&lt;1e-9|dtbbf&lt;1e-9)))&amp;~pc)).*vx;
+        vy= ((((dts1&lt;1e-9|dts2&lt;1e-9)|((dtt&lt;1e-9|dtb&lt;1e-9|dttbf&lt;1e-9|dtbbf&lt;1e-9))))&amp;~pc).*(randn(1,N)*sqrt(C.kb*T/Eme)) +(~((((dts1&lt;1e-9|dts2&lt;1e-9))|((dtt&lt;1e-9|dtb&lt;1e-9|dttbf&lt;1e-9|dtbbf&lt;1e-9)))&amp;~pc)).*vy;
+        vx = (((dts1&lt;1e-9&amp;sign(vx)==1)|(dts2&lt;1e-9 &amp;sign(vx)==-1))&amp;~pc).*-1.*vx+(~(((dts1&lt;1e-9&amp;sign(vx)==1)|(dts2&lt;1e-9 &amp;sign(vx)==-1))&amp;~pc)).*vx;
+        vy = (((((dtt&lt;1e-9&amp;sign(vy)==1)|(dtb&lt;1e-9&amp;sign(vy)==-1)|(dttbf&lt;1e-9&amp;sign(vy)==1)|(dtbbf&lt;1e-9&amp;sign(vy)==-1)))&amp;~pc)).*-1.*vy+(~(((((dtt&lt;1e-9&amp;sign(vy)==1)|(dtb&lt;1e-9&amp;sign(vy)==-1)|(dttbf&lt;1e-9&amp;sign(vy)==1)|(dtbbf&lt;1e-9&amp;sign(vy)==-1)))&amp;~pc))).*vy;
+
+
+
+    <span class="keyword">end</span>
+    <span class="comment">% loop condition for end boundries</span>
+    xpos(l+1,:) = (xpos(l+1,:)&gt;dimx).*0+(xpos(l+1,:)&lt;0).*dimx+~(xpos(l+1,:)&gt;=dimx|xpos(l+1,:)&lt;=0).*xpos(l+1,:);
+    <span class="comment">% colisions with other particals are only alouwed when partical is away</span>
+    <span class="comment">% from the edges and has not colided with an edge Part 2 and 3</span>
+    colision = p&gt;rand(1,N)&amp;~(((dts1&lt;30e-9|dts2&lt;30e-9)|((dtt&lt;30e-9|dtb&lt;10e-9|dttbf&lt;30e-9|dtbbf&lt;30e-9))))&amp;~c;
+    colision_count = colision_count+colision;
+    vy=colision.*(randn(1,N)*sqrt(C.kb*T/Eme))+(~colision).*vy;
+    vx=colision.*(randn(1,N)*sqrt(C.kb*T/Eme))+(~colision).*vx;
+
+
+
+    <span class="comment">% skips the plot of the x boundry transition</span>
+    skip = (xpos(l+1,:)&gt;=dimx|xpos(l+1,:)&lt;=0);
+    <span class="comment">% progress = (l/m)*100</span>
+    v = sqrt(vx.^2+vy.^2);
+    c=0;
+    <span class="comment">%finds the current temperature</span>
+    Temp =[Temp, mean((v.^2)*Eme/(2*C.kb))];
+    <span class="comment">% plots the electrons</span>
+    figure (2)
+    <span class="keyword">for</span> k =1:10
+        <span class="keyword">if</span> skip(k)==0
+            subplot(2,1,1);
+            plot([xpos(l,k),xpos(l+1,k)],[ypos(l,k),ypos(l+1,k)],<span class="string">'-'</span>,<span class="string">'color'</span>,colour(k,:))
+        <span class="keyword">end</span>
+        xlim([0,dimx])
+        ylim([0,dimy])
+        hold <span class="string">on</span>
+        <span class="comment">%quiver(xpos(:,k),ypos(:,k),vx+xpos(:,k),vy+ypos(:,k),0.0001)</span>
+        drawnow <span class="string">limitrate</span>
+
+    <span class="keyword">end</span>
+    subplot(2,1,2)
+    plot([dt*(l-1),dt*(l)],J_driftx(l:l+1),<span class="string">'b-'</span>)
+    hold <span class="string">on</span>
+    xlabel(<span class="string">'time (s)'</span>)
+    ylabel(<span class="string">'temperature (k)'</span>)
+
+    xlim([0,m*dt])
+    ylim([-1e-4,max(J_driftx)+10e-6])
+<span class="keyword">end</span>
+<span class="comment">%finds the mean free path and mean time between colission for part 2 and</span>
+<span class="comment">%plots a final velocity hystegram</span>
+<span class="keyword">if</span> (partical_colission)
+    colision_count(colision_count&lt;=0) = 1;
+    MFP2 = mean (dtraveled./(colision_count))
+    Tmn2= mean( m*dt./(colision_count))
+    figure(3)
+    histogram(v)
+    xlabel(<span class="string">'volocity (m/s)'</span>)
+    ylabel(<span class="string">'probablility'</span>)
+<span class="keyword">end</span>
+<span class="comment">%findes the dencity and temperature of the electrons  part 3</span>
+squarcount= zeros(round(dimy/1e-9),round(dimx/1e-9));
+temps= zeros(round(dimy/1e-9),round(dimx/1e-9));
+<span class="keyword">for</span> k =1:N
+
+    yindex = min((round(dimy/1e-9))-ceil(ypos(m+1,k)/1e-9)+1,round(dimy/1e-9));
+    xindex = min(ceil(xpos(m+1,k)/1e-9)+1,round(dimx/1e-9));
+    <span class="comment">% excludes particals that violate boundry conditions.</span>
+    <span class="keyword">if</span> ((yindex&gt;0&amp;xindex&gt;0) &amp; ~((((ypos(m+1,k)&gt;=box1(2,3))|(ypos(m+1,k)&lt;=box2(2,1))))&amp;(xpos(m+1,k)&gt;= box1(1,1)&amp;xpos(m+1,k)&lt;=box1(1,2))))
+        squarcount(yindex,xindex) =squarcount(yindex,xindex) +1;
+        temps(yindex,xindex)=((v(k))^2)*Eme/(2*C.kb)+temps(yindex,xindex);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+temps=temps./squarcount;
+squarcount =squarcount./((1e-9)*(1e-9));
+
+figure
+subplot(1,2,1)
+bar3(squarcount)
+xlabel(<span class="string">'x position (nm)'</span>)
+ylabel(<span class="string">'y position (nm)'</span>)
+zlabel(<span class="string">'Density of Electrons (electron/m)'</span>)
+subplot(1,2,2)
+
+bar3(temps)
+xlabel(<span class="string">'x position (nm)'</span>)
+ylabel(<span class="string">'y position (nm)'</span>)
+zlabel(<span class="string">'Temperature (k)'</span>)
+</pre><pre class="codeoutput">
+Tmn =
+
+   2.0000e-13
+
+
+vth =
+
+   1.8702e+05
+
+
+MFP =
+
+   3.7404e-08
+
+
+Ex =
+
+   5.0000e+05
+
+
+Ey =
+
+     0
+
+
+Fx =
+
+  -8.0109e-14
+
+
+Fy =
+
+     0
+
+
+AccelerationX =
+
+  -2.1985e-12
+
+
+AccelerationY =
+
+     0
+
+
+MFP2 =
+
+   3.4319e-08
+
+
+Tmn2 =
+
+   2.2215e-13
+
+</pre><img vspace="5" hspace="5" src="Code_01.png" alt=""> <img vspace="5" hspace="5" src="Code_02.png" alt=""> <img vspace="5" hspace="5" src="Code_03.png" alt=""> <img vspace="5" hspace="5" src="Code_04.png" alt=""> <h2 id="3">Appendix 1: E-feild calculation</h2><pre class="codeinput"><span class="keyword">function</span> [Ex, Ey]= calcEfeild (dimx,dimy,Dx,Dy,boundy, box1, box2, box3)
+
+
+sig = 1;
+sigbox = 10e-2;
+
+dx =Dx;
+dy=Dy;
+
+box1pos= [round(box1(1,1)/dx),round(box1(2,1)/dy)];
+box2pos= [round(box2(1,1)/dx),round(box2(2,1)/dy)];
+box1dim= [round((box1(1,2)-box1(1,1))/dx),round((box1(2,1)-box1(2,3))/dy)];
+box2dim= [round((box2(1,2)-box2(1,1))/dx),round((box2(2,1)-box2(2,3))/dy)];
+
+
+nx = round(dimx/dx);
+ny = round(dimy/dy);
+V3 = zeros(ny,nx);
+G2= sparse(nx*ny,nx*ny);
+V02=1;
+BC2= boundy;
+B2 = zeros(1,nx*ny);
+cond = zeros (ny,nx);
+<span class="comment">% sets up conduction map</span>
+
+<span class="keyword">for</span> p = 1:ny
+    <span class="keyword">for</span> m = 1:nx
+
+        <span class="keyword">if</span> ((m &gt;=box1pos(1)&amp;m &lt;=box1pos(1)+box1dim(1))&amp;p &lt;=box1pos(2)&amp;p &gt;=box1pos(2)-box1dim(2))|((m &gt;=box2pos(1)&amp;m &lt;=box2pos(1)+box2dim(1))&amp;p &lt;=box2pos(2)&amp;p &gt;=box2pos(2)-box2dim(2))
+            cond(p,m) =sigbox;
+        <span class="keyword">else</span>
+           cond(p,m) =sig;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+
+<span class="comment">%sets boundry conditions</span>
+<span class="keyword">for</span> p = 1:size(B2,2)
+
+    <span class="keyword">if</span> (p== 1)
+        <span class="keyword">if</span> isnan(BC2(1))
+
+        <span class="keyword">else</span>
+            B2(p)=BC2(1);
+        <span class="keyword">end</span>
+    <span class="keyword">elseif</span> (p == nx)
+        <span class="keyword">if</span> isnan(BC2(3))
+
+        <span class="keyword">else</span>
+            B2(p)=BC2(3);
+        <span class="keyword">end</span>
+    <span class="keyword">elseif</span> (p == (1+(ny-1)*nx))
+        <span class="keyword">if</span> isnan(BC2(1))
+
+        <span class="keyword">else</span>
+            B2(p)=BC2(1);
+        <span class="keyword">end</span>
+    <span class="keyword">elseif</span>(p == nx*ny)
+        <span class="keyword">if</span> isnan(BC2(3))
+
+        <span class="keyword">else</span>
+            B2(p)=BC2(3);
+        <span class="keyword">end</span>
+    <span class="keyword">elseif</span>(mod(p,nx)==0)
+        <span class="keyword">if</span> isnan(BC2(3))
+
+        <span class="keyword">else</span>
+            B2(p)=BC2(3);
+        <span class="keyword">end</span>
+    <span class="keyword">elseif</span>(mod(p-1,nx)==0)
+        <span class="keyword">if</span> isnan(BC2(1))
+
+        <span class="keyword">else</span>
+            B2(p) = BC2(1);
+        <span class="keyword">end</span>
+    <span class="keyword">elseif</span>(1&lt;p&amp;p&lt;nx)
+        <span class="keyword">if</span> isnan(BC2(4))
+
+        <span class="keyword">else</span>
+            B2(p) =BC2(4);
+        <span class="keyword">end</span>
+    <span class="keyword">elseif</span>((1+(ny-1)*nx)&lt;p&amp;p&lt;nx*ny)
+        <span class="keyword">if</span> isnan(BC2(2))
+
+        <span class="keyword">else</span>
+            B2(p) =BC2(2);
+        <span class="keyword">end</span>
+    <span class="keyword">else</span>
+
+    <span class="keyword">end</span>
+
+<span class="keyword">end</span>
+<span class="comment">% creates conduction matrix</span>
+<span class="keyword">for</span> p = 1:ny
+    <span class="keyword">for</span> m = 1:nx
+        n = m+(p-1)*nx;
+        nxm = (m-1)+(p-1)*nx;
+        nxp = (m+1)+(p-1)*nx;
+        nym = (m)+(p-2)*nx;
+        nyp = m+(p)*nx;
+        nxm2 = (m-2)+(p-1)*nx;
+        nxp2=(m+2)+(p-1)*nx;
+        nym2 = (m)+(p-3)*nx;
+        nyp2 = m+(p+1)*nx;
+        nxp3 = (m+3)+(p-1)*nx;
+        nxm3 = (m-3)+(p-1)*nx;
+
+        <span class="keyword">if</span> m == 1
+            G2(n,:)=0;
+            G2(n,n)=1;
+
+        <span class="keyword">elseif</span> m==nx
+            G2(n,:)=0;
+            G2(n,n)=1;
+
+        <span class="keyword">elseif</span> p ==1
+
+            ryp = (cond(p,m)+cond(p+1,m))/2;
+            rxp = (cond(p,m)+cond(p,m+1))/2;
+            rxm = (cond(p,m)+cond(p,m-1))/2;
+
+            G2(n,n) = -(ryp+rxp+rxm);
+            G2(n,nyp)= ryp;
+            G2(n,nxm)= rxm;
+            G2(n,nxp) = rxp;
+
+        <span class="keyword">elseif</span> p==ny
+            rym = (cond(p,m)+cond(p-1,m))/2;
+            rxp = (cond(p,m)+cond(p,m+1))/2;
+            rxm = (cond(p,m)+cond(p,m-1))/2;
+
+            G2(n,n) = -(rym+rxp+rxm);
+            G2(n,nym)= rym;
+            G2(n,nxm)= rxm;
+            G2(n,nxp) = rxp;
+        <span class="keyword">else</span>
+            ryp = (cond(p,m)+cond(p+1,m))/2;
+            rym = (cond(p,m)+cond(p-1,m))/2;
+            rxp = (cond(p,m)+cond(p,m+1))/2;
+            rxm = (cond(p,m)+cond(p,m-1))/2;
+
+            G2(n,n) = -(ryp+rym+rxp+rxm);
+            G2(n,nyp)= ryp;
+            G2(n,nym)= rym;
+            G2(n,nxm)= rxm;
+            G2(n,nxp) = rxp;
+        <span class="keyword">end</span>
+
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="comment">%create voltage map</span>
+V3 = G2\B2';
+Vout2 = zeros(ny, nx);
+<span class="keyword">for</span> p = 1:ny
+    <span class="keyword">for</span> m = 1:nx
+        n = m+(p-1)*nx;
+        Vout2(p,m) =V3(n);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+figure
+surf(cond)
+title(<span class="string">'Sigma'</span>)
+xlabel(<span class="string">'X'</span>)
+ylabel(<span class="string">'Y'</span>)
+zlabel(<span class="string">'conductance'</span>)
+
+
+figure
+title(<span class="string">'Voltage'</span>)
+surf(Vout2)
+xlabel(<span class="string">'X'</span>)
+ylabel(<span class="string">'Y'</span>)
+zlabel(<span class="string">'V'</span>)
+view(-45, -45)
+
+Ex= size (Vout2);
+Ey = size (Vout2);
+<span class="keyword">for</span> p = 1:ny
+    <span class="keyword">for</span> m = 1:nx
+
+        <span class="keyword">if</span> (m==1)
+            Ex(p,m) = (Vout2(p,m+1)-Vout2(p,m))/dx;
+        <span class="keyword">elseif</span> m == nx
+             Ex(p,m) = (Vout2(p,m)-Vout2(p,m-1))/dx;
+        <span class="keyword">else</span>
+             Ex(p,m) = (Vout2(p,m+1)-Vout2(p,m-1))/(dx*2);
+
+        <span class="keyword">end</span>
+         <span class="keyword">if</span> (p==1)
+            Ey(p,m) = (Vout2(p+1,m)-Vout2(p,m))/dy;
+        <span class="keyword">elseif</span> p == ny
+             Ey(p,m) = (Vout2(p,m)-Vout2(p-1,m))/dy;
+        <span class="keyword">else</span>
+             Ey(p,m) = (Vout2(p+1,m)-Vout2(p-1,m))/(dy*2);
+
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+Ex = -Ex;
+Ey = -Ey;
+
+
+
+
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Elec 4700 Assignment 3 
+% Steven Cramp 101030294
+
+%% Introduction:
+% The purpose of this Assignment is to investigate the effects of an
+% electric feild on the trajectories of the electrons in a semiconductor.
+% The assignment will first look at the effects of a constant electric
+% field on the trajectory, then the effect of a changing electric feild.
+
+%% Part 1:
+% This segment looks at the trajectories of electorns in a constant
+% electric feild. A constant electric feild causes the trajectories of the electrons 
+% to curve due to the force that it applies. The code sagment below was
+% used to calculate the the trajectories of the ellectrons with in the
+% semiconductor as well as the current, dencity and temperatuer of the
+% electrons in the semiconductor. The fallowing equation is used to
+% calculate current that flows through the semiconductor. Where V is the volocity 
+% of the electon, q is the charge, is the electron dencity, and A is the
+% cross section of the semiconductor in the y direction.
+% $$Jdrift = -V*N*q*A
+
+
+clc;clear;close all
+global C
+
+C.q_0 = 1.60217653e-19;             % electron charge
+C.hb = 1.054571596e-34;             % Dirac constant
+C.h = C.hb * 2 * pi;                % Planck constant
+C.m_0 = 9.10938215e-31;             % electron mass
+C.kb = 1.3806504e-23;               % Boltzmann constant
+C.eps_0 = 8.854187817e-12;          % vacuum permittivity
+C.mu_0 = 1.2566370614e-6;           % vacuum permeability
+C.c = 299792458;                    % speed of light
+C.g = 9.80665; %metres (32.1740 ft) per sÂ²
+a3p1 =1;
+a3p2 = 0;
+
+partical_colission = 1;% part 2
+boxes =0;%part 3
+specular = 0 ;% part 3 one is on zero is off
+
+T= 300;%k temperature
+Eme= 0.26* C.m_0;% kg effective mass of electron
+Tmn = 0.2e-12%s mean time between colissions
+vth = sqrt(2*C.kb*T/Eme)% m/s thermal volocity
+MFP = vth*Tmn %m
+m= 500;% length of sim
+dt = 5e-15;% time step
+N = 10000; %number of electons
+dimx =200e-9;%m
+dimy =100e-9;%m
+c =zeros(1,N);
+
+Fx=0;
+Fy=0;
+
+% create boxes
+if (boxes)
+    box1 = [dimx-125e-9,dimx-75e-9,dimx-75e-9,dimx-125e-9,dimx-125e-9;dimy,dimy, dimy-40e-9,dimy-40e-9,dimy];
+    box2 = [dimx-125e-9,dimx-75e-9,dimx-75e-9,dimx-125e-9,dimx-125e-9;40e-9,40e-9, 0,0,40e-9];
+else
+    box1 =[0 0 0 0 0 ; 0 0 0 0 0];
+    box2 =[0 0 0 0 0 ; 0 0 0 0 0];
+end
+% initiates points and ensures that they donot spawn ouside the boundries
+if ~boxes
+    xpos = (randi((dimx*1e9)+1,1,N)-1)/1e9;% m electron position x
+    ypos = (randi((dimy*1e9)+1,1,N)-1)/1e9;% m electron position y
+    xpos(xpos ==dimx)=xpos(xpos ==dimx)-1e-9;
+    xpos(xpos ==0)=xpos(xpos ==0)+1e-9;
+    ypos(ypos ==dimy)=ypos(ypos ==dimy)-1e-9;
+    ypos(ypos ==0)=ypos(ypos ==0)+1e-9;
+elseif(boxes)
+    for l =1:N
+        xpos(1,l) =(randi((dimx*1e9)+1,1,1)-1)/1e9 ;
+        ypos(1,l) =(randi((dimy*1e9)+1,1,1)-1)/1e9;
+        while (ypos(1,l)<=0|ypos(1,l)>=dimy|xpos(1,l)>=box1(1,1)-1e-9&xpos(1,l)<=box1(1,2)+1e-9&(ypos(1,l)<=box2(2,1)+1e-9|ypos(1,l)>=box1(2,3)-1e-9))
+            xpos(1,l) =(randi((dimx*1e9)+1,1,1)-1)/1e9 ;
+            ypos(1,l) =(randi((dimy*1e9)+1,1,1)-1)/1e9;
+        end
+    end
+end
+% while(sum ((xpos>=box1(1,1)&xpos<= box1(1,1)& ypos>= box1(2,3))|(xpos>=box2(1,1)&xpos<= box2(1,1)& ypos>= box2(2,3)))>=1)
+%     xpos = (randi((dimx*1e9)+1,1,N)-1)/1e9;% m electron position x
+%     ypos = (randi((dimy*1e9)+1,1,N)-1)/1e9;% m electron position y
+% end
+
+vx   = zeros(1,N);%m/s velocity in x
+vy   = zeros(1,N);%m/s velocity in y
+colision_count = zeros(1,N);
+dtraveled=zeros(1,N);
+colourL = ["R", "G", "B","LB", "P", "y", "BLk", "DB", "O","M","GG"];
+colour = [[1 0 0];[0 1 0];[0 0 1];[0 1 1];[1 0 1];[1 1 0];[0 0 0];[0 0.447 0.741];[0.85 0.325 0.098];[0.929 0.694 0.125];[0.466 0.674 0.188]];
+Temp = T;
+
+ dx2 =1e-9;
+    dy2=1e-9;
+    nx2 =round( dimx/dx2);
+    ny2 = round(dimy/dy2);
+    Ex=zeros(ny2,nx2);
+    Ey=zeros(ny2,nx2);
+% initiated the partical velocities
+if ~partical_colission
+    angle = rand(1,N);
+    vx = vth* cos(angle*2*pi);
+    vy = vth* sin(angle*2*pi);
+else
+    vx =randn(1,N)*sqrt(C.kb*T/Eme);
+    vy=randn(1,N)*sqrt(C.kb*T/Eme);
+end
+v = sqrt(vx.^2+vy.^2);
+
+
+
+if boxes
+    figure (2)
+    subplot(2,1,1);
+    plot (box1(1,:),box1(2,:),'-k')
+    hold on
+    plot (box2(1,:),box2(2,:),'-k')
+end
+if partical_colission
+    figure
+    histogram(v)
+    p =1-exp(-dt/Tmn);
+else
+    p=0;
+end
+
+
+if a3p1 ==1
+    
+    econcentration =1e15;
+    J_driftx = -mean(vx)*econcentration*C.q_0*dimy*100;
+    Vapplied =0.1;
+    Ex = Vapplied/dimx
+    Ey =0
+    Fx = (-C.q_0)*Ex
+    Fy = (-C.q_0)*Ey
+    AccelerationX =(Fx./(C.m_0))*dt.^2
+    AccelerationY =(Fy./(C.m_0))*dt.^2
+end
+if a3p2 == 1
+     econcentration =1e15;
+   boundy = [-1 nan 0 nan];
+   J_driftx = -mean(vx)*econcentration*C.q_0*dimy*100;
+    [Ex, Ey]= calcEfeild (dimx,dimy,dx2,dy2,boundy, box1, box2);
+    
+end    
+
+for l=1:m
+    if a3p2 ==1
+    lincordx = floor(xpos(1,:)/dx2)+1;
+    lincordy = floor(ypos(1,:)/dy2)+1;
+    lincordx(lincordx==round(dimx/dx2))=1;
+    lincordy(lincordy==round(dimy/dy2))=1;
+    for k = 1:N
+    ExatPos= (Ex(lincordy(k),lincordx(k))+Ex(lincordy(k)+1,lincordx(k))+Ex(lincordy(k),lincordx(k)+1)+Ex(lincordy(k)+1,lincordx(k)+1))/4;
+    EyatPos= (Ey(lincordy(k),lincordx(k))+Ey(lincordy(k)+1,lincordx(k))+Ey(lincordy(k),lincordx(k)+1)+Ey(lincordy(k)+1,lincordx(k)+1))/4;
+    end
+        
+        Fx = (-C.q_0)*ExatPos(1,:);
+        Fy = (-C.q_0)*EyatPos(1,:);
+        
+    end
+    
+    %updates position
+    vx = vx+(Fx./(C.m_0))*dt;
+    vy =vy+(Fy./(C.m_0))*dt;
+    v = sqrt(vx.^2+vy.^2);
+    J_driftx =[J_driftx, -C.q_0*econcentration *mean(vx)*dimy*100];
+    xpos=[xpos;xpos(l,:)+(vx)*dt];
+    ypos=[ypos;ypos(l,:)+(vy)*dt];
+    % fineds the distance traveled by each partical
+    dtraveled = dtraveled + sqrt ((xpos(l,:)-xpos(l+1,:)).^2+(ypos(l,:)-ypos(l+1,:)).^2);
+    slope =(vy./vx);
+    % sets up colision detection by determining if the particals have the
+    % distance to the edges
+    
+    dtt = sqrt(((dimy -ypos(l+1,:)).^2)+((((dimy-ypos(l+1,:))./slope)).^2));
+    dtb = sqrt(((0 -ypos(l+1,:)).^2)+((((-ypos(l+1,:))./slope)).^2));
+    if(boxes)
+        dttbf =((xpos(l+1,:)>=box1(1,1)&xpos(l+1,:)<=box1(1,2))).* sqrt(((box1(2,3) -ypos(l+1,:)).^2)+((((box1(2,3)-ypos(l+1,:))./slope)).^2))+~((xpos(l+1,:)>=box1(1,1)&xpos(l+1,:)<=box1(1,2))).*100;
+        dtbbf = ((xpos(l+1,:)>=box1(1,1)&xpos(l+1,:)<=box1(1,2))).*sqrt(((box2(2,1) -ypos(l+1,:)).^2)+((((box2(2,1)-ypos(l+1,:))./slope)).^2))+~((xpos(l+1,:)>=box1(1,1)&xpos(l+1,:)<=box1(1,2))).*100;
+        dts1 =( ypos(l+1,:)<=box2(2,1)|ypos(l+1,:)>=box1(2,3)).* sqrt((slope.*(box1(1,1)-xpos(l+1,:))).^2+(box1(1,1)-xpos(l+1,:)).^2) +~( ypos(l+1,:)<=box2(2,1)|ypos(l+1,:)>=box1(2,3)).*100;
+        dts2=( ypos(l+1,:)<=box2(2,1)|ypos(l+1,:)>=box1(2,3)).* sqrt((slope.*(box1(1,2)-xpos(l+1,:))).^2+(box1(1,2)-xpos(l+1,:)).^2) +~( ypos(l+1,:)<=box2(2,1)|ypos(l+1,:)>=box1(2,3)).*100;
+    else
+        dttbf =ones(1,N).*100;
+        dtbbf = ones(1,N).*100;
+        dts1 =ones(1,N).*100;
+        dts2=ones(1,N).*100;
+        
+    end
+    %counts the number of colissions that have occured and
+    pc =c;
+    c=(((dts1<1e-9|dts2<1e-9)|((dtt<1e-9|dtb<1e-9|dttbf<1e-9|dtbbf<1e-9))));
+    colision_count = colision_count+(((dts1<1e-9|dts2<1e-9)|((dtt<1e-9|dtb<1e-9|dttbf<1e-9|dtbbf<1e-9))));
+    if specular
+        % basic colission part one
+        vy= -((dtt<1e-9|dtb<1e-9|dttbf<1e-9|dtbbf<1e-9).*2-1).*vy;
+        vx= -((dts1<1e-9|dts2<1e-9).*2-1).*vx;
+    else
+        % re thermalized velocities for part 3
+        %if rethermalized volocity is in the same direection as previouse
+        %than flip signs
+        signx=sign(vx);
+        signy=sign(vy);
+        
+        
+        
+        vx= ((((dts1<1e-9|dts2<1e-9)|((dtt<1e-9|dtb<1e-9|dttbf<1e-9|dtbbf<1e-9))))&~pc).*(randn(1,N)*sqrt(C.kb*T/Eme)) +(~((((dts1<1e-9|dts2<1e-9))|((dtt<1e-9|dtb<1e-9|dttbf<1e-9|dtbbf<1e-9)))&~pc)).*vx;
+        vy= ((((dts1<1e-9|dts2<1e-9)|((dtt<1e-9|dtb<1e-9|dttbf<1e-9|dtbbf<1e-9))))&~pc).*(randn(1,N)*sqrt(C.kb*T/Eme)) +(~((((dts1<1e-9|dts2<1e-9))|((dtt<1e-9|dtb<1e-9|dttbf<1e-9|dtbbf<1e-9)))&~pc)).*vy;
+        vx = (((dts1<1e-9&sign(vx)==1)|(dts2<1e-9 &sign(vx)==-1))&~pc).*-1.*vx+(~(((dts1<1e-9&sign(vx)==1)|(dts2<1e-9 &sign(vx)==-1))&~pc)).*vx;
+        vy = (((((dtt<1e-9&sign(vy)==1)|(dtb<1e-9&sign(vy)==-1)|(dttbf<1e-9&sign(vy)==1)|(dtbbf<1e-9&sign(vy)==-1)))&~pc)).*-1.*vy+(~(((((dtt<1e-9&sign(vy)==1)|(dtb<1e-9&sign(vy)==-1)|(dttbf<1e-9&sign(vy)==1)|(dtbbf<1e-9&sign(vy)==-1)))&~pc))).*vy;
+        
+        
+        
+    end
+    % loop condition for end boundries
+    xpos(l+1,:) = (xpos(l+1,:)>dimx).*0+(xpos(l+1,:)<0).*dimx+~(xpos(l+1,:)>=dimx|xpos(l+1,:)<=0).*xpos(l+1,:);
+    % colisions with other particals are only alouwed when partical is away
+    % from the edges and has not colided with an edge Part 2 and 3
+    colision = p>rand(1,N)&~(((dts1<30e-9|dts2<30e-9)|((dtt<30e-9|dtb<10e-9|dttbf<30e-9|dtbbf<30e-9))))&~c;
+    colision_count = colision_count+colision;
+    vy=colision.*(randn(1,N)*sqrt(C.kb*T/Eme))+(~colision).*vy;
+    vx=colision.*(randn(1,N)*sqrt(C.kb*T/Eme))+(~colision).*vx;
+    
+    
+    
+    % skips the plot of the x boundry transition
+    skip = (xpos(l+1,:)>=dimx|xpos(l+1,:)<=0);
+    % progress = (l/m)*100
+    v = sqrt(vx.^2+vy.^2);
+    c=0;
+    %finds the current temperature
+    Temp =[Temp, mean((v.^2)*Eme/(2*C.kb))];
+    % plots the electrons
+    figure (2)
+    for k =1:10
+        if skip(k)==0
+            subplot(2,1,1);
+            plot([xpos(l,k),xpos(l+1,k)],[ypos(l,k),ypos(l+1,k)],'-','color',colour(k,:))
+        end
+        xlim([0,dimx])
+        ylim([0,dimy])
+        hold on
+        %quiver(xpos(:,k),ypos(:,k),vx+xpos(:,k),vy+ypos(:,k),0.0001)
+        drawnow limitrate
+        
+    end
+    subplot(2,1,2)
+    plot([dt*(l-1),dt*(l)],J_driftx(l:l+1),'b-')
+    hold on
+    xlabel('time (s)')
+    ylabel('temperature (k)')
+    
+    xlim([0,m*dt])
+    ylim([-1e-4,max(J_driftx)+10e-6])
+end
+%finds the mean free path and mean time between colission for part 2 and
+%plots a final velocity hystegram
+if (partical_colission)
+    colision_count(colision_count<=0) = 1;
+    MFP2 = mean (dtraveled./(colision_count))
+    Tmn2= mean( m*dt./(colision_count))
+    figure(3)
+    histogram(v)
+    xlabel('volocity (m/s)')
+    ylabel('probablility')
+end
+%findes the dencity and temperature of the electrons  part 3
+squarcount= zeros(round(dimy/1e-9),round(dimx/1e-9));
+temps= zeros(round(dimy/1e-9),round(dimx/1e-9));
+for k =1:N
+    
+    yindex = min((round(dimy/1e-9))-ceil(ypos(m+1,k)/1e-9)+1,round(dimy/1e-9));
+    xindex = min(ceil(xpos(m+1,k)/1e-9)+1,round(dimx/1e-9));
+    % excludes particals that violate boundry conditions.
+    if ((yindex>0&xindex>0) & ~((((ypos(m+1,k)>=box1(2,3))|(ypos(m+1,k)<=box2(2,1))))&(xpos(m+1,k)>= box1(1,1)&xpos(m+1,k)<=box1(1,2))))
+        squarcount(yindex,xindex) =squarcount(yindex,xindex) +1;
+        temps(yindex,xindex)=((v(k))^2)*Eme/(2*C.kb)+temps(yindex,xindex);
+    end
+end
+temps=temps./squarcount;
+squarcount =squarcount./((1e-9)*(1e-9));
+
+figure
+subplot(1,2,1)
+bar3(squarcount)
+xlabel('x position (nm)')
+ylabel('y position (nm)')
+zlabel('Density of Electrons (electron/m)')
+subplot(1,2,2)
+
+bar3(temps)
+xlabel('x position (nm)')
+ylabel('y position (nm)')
+zlabel('Temperature (k)')
+
+
+
+
+
+%% Appendix 1: E-feild calculation
+
+
+function [Ex, Ey]= calcEfeild (dimx,dimy,Dx,Dy,boundy, box1, box2, box3)
+
+
+sig = 1;
+sigbox = 10e-2;
+
+dx =Dx;
+dy=Dy;
+
+box1pos= [round(box1(1,1)/dx),round(box1(2,1)/dy)];
+box2pos= [round(box2(1,1)/dx),round(box2(2,1)/dy)];
+box1dim= [round((box1(1,2)-box1(1,1))/dx),round((box1(2,1)-box1(2,3))/dy)];
+box2dim= [round((box2(1,2)-box2(1,1))/dx),round((box2(2,1)-box2(2,3))/dy)];
+
+
+nx = round(dimx/dx);
+ny = round(dimy/dy);
+V3 = zeros(ny,nx);
+G2= sparse(nx*ny,nx*ny);
+V02=1;
+BC2= boundy;
+B2 = zeros(1,nx*ny);
+cond = zeros (ny,nx);
+% sets up conduction map
+
+for p = 1:ny
+    for m = 1:nx
+        
+        if ((m >=box1pos(1)&m <=box1pos(1)+box1dim(1))&p <=box1pos(2)&p >=box1pos(2)-box1dim(2))|((m >=box2pos(1)&m <=box2pos(1)+box2dim(1))&p <=box2pos(2)&p >=box2pos(2)-box2dim(2))
+            cond(p,m) =sigbox; 
+        else
+           cond(p,m) =sig; 
+        end
+    end
+end
+
+
+%sets boundry conditions 
+for p = 1:size(B2,2)
+    
+    if (p== 1)
+        if isnan(BC2(1))
+            
+        else
+            B2(p)=BC2(1);
+        end
+    elseif (p == nx)
+        if isnan(BC2(3))
+            
+        else
+            B2(p)=BC2(3);
+        end
+    elseif (p == (1+(ny-1)*nx))
+        if isnan(BC2(1))
+            
+        else
+            B2(p)=BC2(1);
+        end
+    elseif(p == nx*ny)
+        if isnan(BC2(3))
+            
+        else
+            B2(p)=BC2(3);
+        end
+    elseif(mod(p,nx)==0)
+        if isnan(BC2(3))
+            
+        else
+            B2(p)=BC2(3);
+        end
+    elseif(mod(p-1,nx)==0)
+        if isnan(BC2(1))
+            
+        else
+            B2(p) = BC2(1);
+        end
+    elseif(1<p&p<nx)
+        if isnan(BC2(4))
+            
+        else
+            B2(p) =BC2(4);
+        end
+    elseif((1+(ny-1)*nx)<p&p<nx*ny)
+        if isnan(BC2(2))
+            
+        else
+            B2(p) =BC2(2);
+        end
+    else
+        
+    end
+    
+end
+% creates conduction matrix
+for p = 1:ny
+    for m = 1:nx
+        n = m+(p-1)*nx;
+        nxm = (m-1)+(p-1)*nx;
+        nxp = (m+1)+(p-1)*nx;
+        nym = (m)+(p-2)*nx;
+        nyp = m+(p)*nx;
+        nxm2 = (m-2)+(p-1)*nx;
+        nxp2=(m+2)+(p-1)*nx;
+        nym2 = (m)+(p-3)*nx;
+        nyp2 = m+(p+1)*nx;
+        nxp3 = (m+3)+(p-1)*nx;
+        nxm3 = (m-3)+(p-1)*nx;
+        
+        if m == 1
+            G2(n,:)=0;
+            G2(n,n)=1;
+            
+        elseif m==nx
+            G2(n,:)=0;
+            G2(n,n)=1;
+            
+        elseif p ==1
+            
+            ryp = (cond(p,m)+cond(p+1,m))/2;
+            rxp = (cond(p,m)+cond(p,m+1))/2;
+            rxm = (cond(p,m)+cond(p,m-1))/2;
+            
+            G2(n,n) = -(ryp+rxp+rxm);
+            G2(n,nyp)= ryp;
+            G2(n,nxm)= rxm;
+            G2(n,nxp) = rxp;
+            
+        elseif p==ny
+            rym = (cond(p,m)+cond(p-1,m))/2;
+            rxp = (cond(p,m)+cond(p,m+1))/2;
+            rxm = (cond(p,m)+cond(p,m-1))/2;
+            
+            G2(n,n) = -(rym+rxp+rxm);
+            G2(n,nym)= rym;
+            G2(n,nxm)= rxm;
+            G2(n,nxp) = rxp;
+        else
+            ryp = (cond(p,m)+cond(p+1,m))/2;
+            rym = (cond(p,m)+cond(p-1,m))/2;
+            rxp = (cond(p,m)+cond(p,m+1))/2;
+            rxm = (cond(p,m)+cond(p,m-1))/2;
+            
+            G2(n,n) = -(ryp+rym+rxp+rxm);
+            G2(n,nyp)= ryp;
+            G2(n,nym)= rym;
+            G2(n,nxm)= rxm;
+            G2(n,nxp) = rxp;
+        end
+        
+    end
+end
+%create voltage map
+V3 = G2\B2';
+Vout2 = zeros(ny, nx);
+for p = 1:ny
+    for m = 1:nx
+        n = m+(p-1)*nx;
+        Vout2(p,m) =V3(n);
+    end
+end
+
+figure
+surf(cond)
+title('Sigma')
+xlabel('X')
+ylabel('Y')
+zlabel('conductance')
+
+
+figure 
+title('Voltage')
+surf(Vout2)
+xlabel('X')
+ylabel('Y')
+zlabel('V')
+view(-45, -45)
+
+Ex= size (Vout2);
+Ey = size (Vout2);
+for p = 1:ny
+    for m = 1:nx
+        
+        if (m==1)
+            Ex(p,m) = (Vout2(p,m+1)-Vout2(p,m))/dx; 
+        elseif m == nx
+             Ex(p,m) = (Vout2(p,m)-Vout2(p,m-1))/dx; 
+        else 
+             Ex(p,m) = (Vout2(p,m+1)-Vout2(p,m-1))/(dx*2);
+            
+        end
+         if (p==1)
+            Ey(p,m) = (Vout2(p+1,m)-Vout2(p,m))/dy; 
+        elseif p == ny
+             Ey(p,m) = (Vout2(p,m)-Vout2(p-1,m))/dy; 
+        else 
+             Ey(p,m) = (Vout2(p+1,m)-Vout2(p-1,m))/(dy*2);
+            
+        end
+    end 
+end
+Ex = -Ex;
+Ey = -Ey;
+
+
+
+
+end
+
+##### SOURCE END #####
+--></body></html>
